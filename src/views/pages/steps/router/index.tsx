@@ -11,6 +11,7 @@ const RouterStep = () => {
       </Highlight>
       <p>the source code ? <a href="https://github.com/aronmi/preactice/tree/60cdbd378e2d49f7d9875e75791d9b54f3b8ca2f">here!</a></p>
       <p>learn more at <a href="https://reactrouter.com/web/guides/quick-start">React Router</a></p>
+      <a href="/step/patterns/lazy" >Next</a>
       <br />
       <a href="/step/about-reactick" >Back</a>
     </>
