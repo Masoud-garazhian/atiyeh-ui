@@ -9,8 +9,8 @@ const LazyLoadingStep = () => {
         <blockquote>"as your app grows, your bundle will grow too. Especially if you are including large third-party libraries."</blockquote>
         <pre>{`and this is exactly what happens to our app when we add styling libraries or component libraries to our app.
         so let's follow the React.Lazy pattern for the next steps.
-        there are more things to do, we will talk about it later.
-        but for now just React.Lazy!, it so simple! all we need is to change the routes like lines 3 and 4:`}</pre>
+        (there are more things to do to optimize the code, we will talk about it later)
+        but for now just React.Lazy, it so simple! all we need is to change the way we import like lines 3 and 4:`}</pre>
         <br />
         <Highlight skipFormat={true}>{`import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
