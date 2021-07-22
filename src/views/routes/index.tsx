@@ -1,12 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
-import StyledComponents from '../pages/steps/styling/styled-components';
 import './styles.css';
 
 const InitStep = lazy(() => import('../pages/steps/init-app'));
 const AboutProject = lazy(() => import('../pages/steps/init-app/about-project'));
 const LazyLoadingStep = lazy(() => import('../pages/steps/patters/lazy'));
 const RouterStep = lazy(() => import('../pages/steps/router'));
+const StyledComponents = lazy(() => import('../pages/steps/styling/styled-components'));
 
 const Routes = () => {
   return (
