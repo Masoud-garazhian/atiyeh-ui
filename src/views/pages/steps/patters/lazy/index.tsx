@@ -28,11 +28,13 @@ const App = () => (
     </Suspense>
   </BrowserRouter>
 )`}</Highlight>
+        {`so we change our code and make `}<a href="https://github.com/aronmi/preactice/commit/3fd6b090ab35a21843b5d55718f65a154bba5925" target="_blank">this changes</a>!
         <pre>{`
         what about line 8 ?
         accourding to React docs:
         The lazy component should then be rendered inside a Suspense component, which allows us to show some fallback content (such as a loading indicator) while we’re waiting for the lazy component to load.
 The fallback prop accepts any React elements that you want to render while waiting for the component to load. You can place the Suspense component anywhere above the lazy component. You can even wrap multiple lazy components with a single Suspense component.`}</pre>
+        <br /> <a href="/step/styling/js-styling">Next</a>
         <br /> <a href="/step/router">Back</a>
       </pre>
     </div>

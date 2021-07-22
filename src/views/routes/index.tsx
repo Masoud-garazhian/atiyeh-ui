@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import StyledComponents from '../pages/steps/styling/styled-components';
 import './styles.css';
 
 const InitStep = lazy(() => import('../pages/steps/init-app'));
@@ -18,6 +19,7 @@ const Routes = () => {
             <Route path="/step/about-project"><AboutProject /></Route>
             <Route path="/step/router"><RouterStep /></Route>
             <Route path="/step/patterns/lazy"><LazyLoadingStep /></Route>
+            <Route path="/step/styling/js-styling"><StyledComponents /></Route>
           </Switch>
         </Suspense>
       </BrowserRouter>
