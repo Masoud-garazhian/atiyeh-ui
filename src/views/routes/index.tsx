@@ -1,6 +1,7 @@
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import InitStep from '../pages/steps/init-app';
 import AboutProject from '../pages/steps/init-app/about-project';
+import RouterStep from '../pages/steps/router';
 import './styles.css';
 
 
@@ -12,6 +13,7 @@ const Routes = () => {
         <Switch>
           <Route exact path="/"><InitStep /></Route>
           <Route path="/step/about-project"><AboutProject /></Route>
+          <Route path="/step/router"><RouterStep /></Route>
         </Switch>
       </BrowserRouter>
     </div>

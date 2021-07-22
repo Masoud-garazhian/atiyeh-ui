@@ -9,6 +9,7 @@ const AboutProject = () => {
       but we will talk about advanced concepts, testing, hooks, patterns and a lot more here in Preactice.
       what we are going to build here is a React tutorial web app which by following the git changes anyone can learn React step by step.
 `}
+      <a href="/step/router" >Next</a>
       <br />
       <a href="/" >Back</a>
     </pre>
