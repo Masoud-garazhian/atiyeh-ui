@@ -22,6 +22,8 @@ const StyledComponents = () => {
         , <a href="https://github.com/chenglou/react-motion">React motion</a>
         &nbsp;and <a href="https://github.com/pmndrs/react-spring">React Spring</a> for animations in React!
       </p>
+      <p>{`<>`}<a href="https://github.com/aronmi/preactice/tree/05f4a4f53f364e5bc1071dc590f4f0dda0859aef">this code</a> and <a href="https://github.com/aronmi/preactice/commit/05f4a4f53f364e5bc1071dc590f4f0dda0859aef">the changes</a>{`</>`}</p>
+      <a href="/step/styling/component-libs">Next</a>
       <br /><a href="/step/patterns/lazy">Back</a>
     </pre>
   )
