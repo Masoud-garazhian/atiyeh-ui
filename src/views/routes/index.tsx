@@ -7,6 +7,7 @@ const AboutProject = lazy(() => import('../pages/steps/init-app/about-project'))
 const LazyLoadingStep = lazy(() => import('../pages/steps/patters/lazy'));
 const RouterStep = lazy(() => import('../pages/steps/router'));
 const StyledComponents = lazy(() => import('../pages/steps/styling/styled-components'));
+const ComponentLibraries = lazy(() => import('../pages/steps/styling/component-libraries'));
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
             <Route path="/step/router"><RouterStep /></Route>
             <Route path="/step/patterns/lazy"><LazyLoadingStep /></Route>
             <Route path="/step/styling/js-styling"><StyledComponents /></Route>
+            <Route path="/step/styling/component-libs"><ComponentLibraries /></Route>
           </Switch>
         </Suspense>
       </BrowserRouter>
