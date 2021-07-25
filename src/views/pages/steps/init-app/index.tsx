@@ -1,27 +1,98 @@
-import logo from './logo.svg';
-import './styles.css'
 
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-const InitStep = () => {
+function Copyright() {
   return (
-    <>
-      <img src={logo} className="App-logo" alt="logo" />
-      <div>
-        <blockquote><i>"It starts with, one thing":</i></blockquote>
-        <p><code>npx create-react-app preactice --template typescript</code></p>
-        <p>and it makes&nbsp;
-          <a href="https://github.com/aronmi/preactice/tree/ab8c213119a77db27fefb6ddf8b0cc955ad2c474" target="_blank">this</a>
-        </p>
-        <p>
-          <span>see more&nbsp;</span>
-          <a href="https://create-react-app.dev/docs/adding-typescript/" target="_blank" >here</a>
-        </p>
-        <p>and then we made <a href="https://github.com/aronmi/preactice/commit/a44888069f99c86e9027ee2c94b0a2a4fd60eb14" target="_blank">this changes</a></p>
-        <p><span>tried it? </span><a href="/step/about-project" >Let's go!</a></p>
-      </div>
-    </>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-export default InitStep;
+export default function InitStep() {
+  const classes = useStyles();
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          ورود به سامانه
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="standard"
+                required
+                fullWidth
+                id="MobileNo"
+                label="شماره تلفن"
+                name="MobileNo"
+                autoComplete="tel"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            دریافت کد
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="#" variant="body2">
+                درحال حاضر دارای اکانت هستم. ورود
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+}
