@@ -1,4 +1,9 @@
 @import "~antd/dist/antd.css";
+@font-face {
+  font-family: "IRANSansWeb";
+  src: local("IRANSansWeb"), url(./assets/fonts/IRANSansWeb.ttf) format("truetype"),
+    url(./assets/fonts/IRANSansWeb.woff) format("woff");
+}
 body {
   margin: 0;
   padding: 10px !important;
