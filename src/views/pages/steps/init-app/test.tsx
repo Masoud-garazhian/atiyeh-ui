@@ -1,18 +1,37 @@
-import React,{ Component } from 'react';
+import * as React from 'react';
 
-export interface testProps {
-    
+type Props = {
+  label: string;
+};
+
+type State = {
+  count: number;
+};
+
+export class ClassCounter extends React.Component<Props, State> {
+  readonly state: State = {
+    count: 0,
+  };
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    const { handleIncrement } = this;
+    const { label } = this.props;
+    const { count } = this.state;
+
+    return (
+      <div>
+        <span>
+          {label}: {count}
+        </span>
+        <button type="button" onClick={handleIncrement}>
+          {`Increment`}
+        </button>
+      </div>
+    );
+  }
 }
- 
-export interface testState {
-    
-}
- 
-class test extends React.Component<testProps, testState> {
-    state = { xxx:"hi"  }
-    render() { 
-        return (<></>  );
-    }
-}
- 
-export default test;
+//https://github.com/piotrwitek/react-redux-typescript-guide#react--redux-in-typescript---complete-guide
