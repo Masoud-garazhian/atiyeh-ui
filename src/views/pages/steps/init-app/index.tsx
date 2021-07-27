@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { forcePatternInput } from '../../../../utils/input-utils';
 
 function Copyright() {
   return (
@@ -64,6 +65,7 @@ export default function InitStep() {
               <TextField
                 variant="standard"
                 required
+                {...forcePatternInput(/[0-9]/)}
                 fullWidth
                 id="MobileNo"
                 label="شماره تلفن"
