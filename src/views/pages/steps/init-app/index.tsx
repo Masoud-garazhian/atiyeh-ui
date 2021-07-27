@@ -1,43 +1,36 @@
+import React, { Component } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { forcePatternInput } from "../../../../utils/input-utils";
 
-import React,{ Component } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+export interface InitStepProps {}
 
+export interface InitStepState {}
 
-
-
-export interface InitStepProps {
-  
-}
- 
-export interface InitStepState {
-  
-}
- 
 class InitStep extends React.Component<InitStepProps, InitStepState> {
-  state = { isActiveOtp : false  }
-   useStyles = makeStyles((theme) => ({
+  state = { isActiveOtp: false };
+  useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
     avatar: {
       margin: theme.spacing(1),
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      width: "100%", // Fix IE 11 issue.
       marginTop: theme.spacing(3),
     },
     submit: {
@@ -46,12 +39,10 @@ class InitStep extends React.Component<InitStepProps, InitStepState> {
   }));
   classes = this.useStyles();
 
-   renderOtpTextfield = () =>
-    this.state.isActiveOtp ? "block" :"none";
+  renderOtpTextfield = () => (this.state.isActiveOtp ? "block" : "none");
 
-  render() {  
+  render() {
     return (
-      
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={this.classes.paper}>
@@ -63,7 +54,7 @@ class InitStep extends React.Component<InitStepProps, InitStepState> {
           </Typography>
           <form className={this.classes.form} noValidate>
             <Grid container spacing={2}>
-            <Grid item xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   variant="standard"
                   required
@@ -73,9 +64,9 @@ class InitStep extends React.Component<InitStepProps, InitStepState> {
                   name="MobileNo"
                   autoComplete="tel"
                 />
-              </Grid>            
+              </Grid>
               <Grid item xs={12}>
-              {/* <Box component="div" display={this.renderOtpTextfield}>  */}
+                {/* <Box component="div" display={this.renderOtpTextfield}>  */}
                 <TextField
                   variant="standard"
                   required
@@ -94,7 +85,9 @@ class InitStep extends React.Component<InitStepProps, InitStepState> {
               variant="contained"
               color="primary"
               className={this.classes.submit}
-              onClick={() => { alert('clicked') }}
+              onClick={() => {
+                alert("clicked");
+              }}
             >
               دریافت کد
             </Button>
@@ -114,21 +107,17 @@ class InitStep extends React.Component<InitStepProps, InitStepState> {
     );
   }
 }
- 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Todo: change this :D 
-      </Link>{' '}
+        Todo: change this :D
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 export default InitStep;
-
-
-
-
