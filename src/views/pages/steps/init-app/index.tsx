@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,21 +11,24 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { forcePatternInput } from '../../../../utils/input-utils';
-
-
+import { forcePatternInput } from '../../../../core/utils/input-utils';
 
 
 export interface InitStepProps {
 
 }
 
-export interface InitStepState {
-
-}
-
 const InitStep: React.FC<InitStepProps> = props => {
   const classes = useStyles();
+  const otp = useState<string>('');
+
+  const handleSubmitClick = () => {
+    if (otp) {
+
+    } else {
+
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,6 +61,7 @@ const InitStep: React.FC<InitStepProps> = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmitClick}
           >
             دریافت کد
           </Button>
