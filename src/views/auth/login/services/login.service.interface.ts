@@ -1,14 +1,9 @@
-import { ITokenData } from '../../../../core/model/auth/token-data.model';
-import { IRegisterSecurityImage } from '../../register/model/register-security-image.model';
-import { BehaviorSubject ,Subject } from 'rxjs';
+import { IServerOTP } from '../../../../core/models/data/server-otp.model';
+import { ITokenData } from '../../../../core/models/data/token-data.model';
+import { ILoginResponse } from '../model/login-response.model';
+import { IRegisterByPhoneResponse } from '../model/register-by-phone-response.model';
 
 export interface ILoginService {
-  login(username: string, password: string): Promise<ITokenData>;
-  biometricsLogin(username: string, identity: string): Promise<ITokenData>;
-  getSecurityImage(username: string): Promise<IRegisterSecurityImage>;
-  logout(): Promise<void>;
-  restoreToken(): Promise<ITokenData>;
-  persistToken(token: string, refresh: string): Promise<ITokenData>;
-  getTokenData(token: string): ITokenData;  
-  IsUserLoggedIn : Subject<boolean | undefined>;
+  submitPhone(phoneNo: string): Promise<IServerOTP>;
+  login(phoneNo: string, otp: string): Promise<ITokenData>;
 }

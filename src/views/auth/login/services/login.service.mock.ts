@@ -1,10 +1,11 @@
-import { ITokenData } from '../../../../core/model/auth/token-data.model';
-import { wait } from '../../../../core/util/rn-util';
-import { BaseHttpService } from '../../../../core/model/base-http-service';
-import { LocalStorageService } from '../../../../core/service/local-storage.service';
+import { OtpKey } from '../../../../core/data/enum/otp-key.enum';
+import { IServerOTP } from '../../../../core/models/data/server-otp.model';
+import { ITokenData } from '../../../../core/models/data/token-data.model';
+import { BaseHttpService } from '../../../../core/services/base-http-service';
+import { LocalStorageService } from '../../../../core/services/local-storage/local-storage.service';
+import { wait } from '../../../../core/utils/js-utils';
+import { RandomUtil } from '../../../../core/utils/rand-utils';
 import { ILoginService } from './login.service.interface';
-import { MockRegisterService } from '../../register/service/register.service.mock';
-import { IRegisterSecurityImage } from '../../register/model/register-security-image.model';
 
 export class MockLoginService extends BaseHttpService implements ILoginService {
   latestOtp: any;
@@ -14,52 +15,28 @@ export class MockLoginService extends BaseHttpService implements ILoginService {
     this._instance = this._instance ?? new MockLoginService()
     return this._instance;
   }
-
-  public getSecurityImage(username: string): Promise<IRegisterSecurityImage> {
-
-    return wait(1000).then(_ => MockRegisterService.mockSecurityImages[0]);
-  }
   private constructor() {
     super()
   }
 
-  public async biometricsLogin(username: string, identity: string): Promise<ITokenData> {
-    return wait(1000).then(_ => {
-      return this.persistToken('mocktoken', 'refreshToken')
-    });
+  public async submitPhone(phoneNo: string): Promise<IServerOTP> {
+    const x = await wait(400); // to feel more real 
+    this.latestOtp = RandomUtil.mockOtp(phoneNo.startsWith('0912') ? OtpKey.login : OtpKey.register);
+    return this.latestOtp;
   }
 
-  public login(username: string, password: string): Promise<ITokenData> {
-    return wait(1000).then(_ => {
-      return this.persistToken('mocktoken', 'refreshToken')
-    });
+  public async login(phoneNumber: string, otp: string): Promise<ITokenData> {
+    const _ = await wait(1000);
+    return this.persistToken('mocktoken', 'refreshToken');
+  }
+  public async persistToken(token: string, refresh: string): Promise<ITokenData> {
+    const _ = await LocalStorageService.instance.setItem('loginToken', token);
+    const __1 = await LocalStorageService.instance.setItem('refreshToken', refresh);
+    BaseHttpService.bearerToken = `bearer ${token}`;
+    return this.getTokenData(token);
   }
 
-  public logout(): Promise<void> {
-    BaseHttpService.bearerToken = undefined;
-    return LocalStorageService.instance.removeItem('loginToken');
-  }
 
-  public restoreToken(): Promise<ITokenData> {
-    return LocalStorageService.instance.getItem('loginToken')
-      .then(token => {
-        if (!token)
-          return Promise.reject('no token found');
-        else {
-          BaseHttpService.bearerToken = `bearer ${token}`;
-          return this.getTokenData(token)
-        }
-      });
-  }
-
-  public persistToken(token: string, refresh: string): Promise<ITokenData> {
-    return LocalStorageService.instance.setItem('loginToken', token).then(_ => {
-      return LocalStorageService.instance.setItem('refreshToken', refresh).then(_ => {
-        BaseHttpService.bearerToken = `bearer ${token}`;
-        return this.getTokenData(token)
-      })
-    })
-  }
 
   public getTokenData = (token: string): ITokenData => {
     if (!token)
@@ -77,7 +54,7 @@ export class MockLoginService extends BaseHttpService implements ILoginService {
       }
     }
     const tokenData = parseToken({
-      Username: 'hans', email: 'hans.brown@consolsys.com', FullName: 'Hans Jr. Brown',
+      Username: 'hans', email: 'hans.brown@gmail.com', FullName: 'Hans Jr. Brown',
       exp: (() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDay() + 7) })(),
       iat: new Date(),
       Avatar: null,

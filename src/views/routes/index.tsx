@@ -3,6 +3,7 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import './styles.css';
 
 const InitStep = lazy(() => import('../pages/steps/init-app'));
+const LoginScreen = lazy(() => import('../auth/login/screen/login-screen'));
 const AboutProject = lazy(() => import('../pages/steps/init-app/about-project'));
 const LazyLoadingStep = lazy(() => import('../pages/steps/patters/lazy'));
 const RouterStep = lazy(() => import('../pages/steps/router'));
@@ -16,7 +17,7 @@ const Routes = () => {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path="/"><InitStep /></Route>
+            <Route exact path="/"><LoginScreen /></Route>
             <Route path="/step/about-project"><AboutProject /></Route>
             <Route path="/step/router"><RouterStep /></Route>
             <Route path="/step/patterns/lazy"><LazyLoadingStep /></Route>
