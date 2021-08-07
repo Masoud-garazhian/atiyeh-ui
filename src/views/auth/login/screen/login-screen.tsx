@@ -12,21 +12,49 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { forcePatternInput } from '../../../../core/utils/input-utils';
+import { LoginService } from '../services/login.service';
+import { OtpKey } from '../../../../core/data/enum/otp-key.enum';
+import { IServerOTP } from '../../../../core/models/data/server-otp.model';
+import { RegisterService } from '../../register/service/register.service';
+import sha1 from 'sha1';
+import { useHistory } from 'react-router-dom';
 
 
 export interface InitStepProps {
 
 }
 
-const InitStep: React.FC<InitStepProps> = props => {
+const LoginScreen: React.FC<InitStepProps> = props => {
   const classes = useStyles();
-  const otp = useState<string>('');
+  const [phoneNo, $phoneNo] = useState<string>('');
+  const [serverOtp, $serverOtp] = useState<IServerOTP | undefined>(undefined);
+  const [otp, $otp] = useState<string>('');
+  const [message, $message] = useState<string>('');
+  const history = useHistory();
 
   const handleSubmitClick = () => {
-    if (otp) {
-
+    if (serverOtp) {
+      const encOtp = sha1(otp);
+      if (serverOtp.otpKey === OtpKey.register) {
+        RegisterService.instance.registerByPhone(phoneNo, encOtp).then(x => {
+          history.push('step/about-project'); //todo : change to register 
+        }, error => {
+          $message(error);
+        })
+      }
+      else if (serverOtp.otpKey === OtpKey.login) {
+        LoginService.instance.login(phoneNo, encOtp).then(x => {
+          history.push('/step/router'); //todo : change to home 
+        }, error => {
+          $message(error);
+        })
+      }
     } else {
-
+      LoginService.instance.submitPhone(phoneNo).then(x => {
+        $serverOtp(x);
+      }, error => {
+        $message(error);
+      })
     }
   }
 
@@ -48,15 +76,28 @@ const InitStep: React.FC<InitStepProps> = props => {
                 required
                 {...forcePatternInput(/[0-9]/)}
                 fullWidth
-                id="MobileNo"
+                value={phoneNo}
+                onChange={x => $phoneNo(x.target.value)}
                 label="شماره تلفن"
-                name="MobileNo"
-                autoComplete="tel"
+                autoComplete="phoneNo"
               />
             </Grid>
+            {serverOtp &&
+              <Grid item xs={12}>
+                <TextField
+                  variant="standard"
+                  required
+                  {...forcePatternInput(/[0-9]/)}
+                  fullWidth
+                  value={otp}
+                  onChange={x => $otp(x.target.value)}
+                  label="یکبار رمز"
+                  autoComplete="off"
+                />
+              </Grid>
+            }
           </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
@@ -93,7 +134,7 @@ function Copyright() {
     </Typography>
   );
 }
-export default InitStep;
+export default LoginScreen;
 
 
 const useStyles = makeStyles((theme) => ({
